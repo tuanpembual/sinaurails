@@ -1,5 +1,5 @@
 # README
-INDRA PURNOMO
+### INDRA PURNOMO
 
 Ruby version 2.3.3 working under Vagrant
 
@@ -9,7 +9,13 @@ Ruby version 2.3.3 working under Vagrant
  
  `mkdir depRuby && cd depRuby`
  
- note: nama folder terserah
+ buat vagrantfile dan edit
+ 
+ `vagrant init`
+ 
+ `sudo vim Vagrantfile` #vmbox =ubuntu/xenial64 dan ip private 192.168.33.10 
+ 
+ note: nama folder dan ip private tidak harus sama
 
 ## Install vagrant dan masuk ke Vagrant
 
@@ -45,11 +51,9 @@ Change owner sebelum install Ruby
 
 ## Prepare Database
 
-Install postgresql dan libpq-dev
+Install postgresql
 
 `sudo apt install postgresql`
-
-`sudo apt install libpq-dev`
 
 Buat user role:  
 `sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"`
@@ -70,9 +74,11 @@ Clon repo sinaurail
 
 ## Setup Secret
 
-Install nodejs
+Install nodejs dan  libpq-dev
 
 `sudo apt install nodejs`
+
+`sudo apt install libpq-dev`
 
 Masuk direktori sinaurails
 
