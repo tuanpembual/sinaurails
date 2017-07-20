@@ -11,14 +11,16 @@ Ruby version 2.3.3 working under Vagrant
 ## Install vagrant dan masuk ke Vagrant
 
 `vagrant up`
+
 `vagrant ssh`
 
 ## Install Ruby using rvm
 
 
-curl -sSL https://get.rvm.io | sudo bash -s stable
+`curl -sSL https://get.rvm.io | sudo bash -s stable`
 
 ## Setup Env 
+
 `sudo vim /etc/environment`
 
 Timpa dengan baris berikut:  
@@ -27,6 +29,7 @@ PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bi
 ```
 
 Reload env  
+
 `source /etc/environment`
 
 rvm install ruby-2.3.3
@@ -37,7 +40,9 @@ gem install bundler --no-rdoc --no-ri
 ## Prepare Database
 
 Install postgresql dan libpq-dev
-`sudo apt install postgresql` 
+
+`sudo apt install postgresql`
+
 `sudo apt install libpq-dev`
 
 Buat user role:  
@@ -50,17 +55,21 @@ Cari bagian `local` (baris 90). ubah peer menjadi md5
 `local  all all md5`
 
 Restart Postgresql
+
 `sudo service postgresql restart`
 
 Clon repo sinaurail
+
 `git clone git@github.com:indrapurnomo/sinaurails.git`
 
 ## Setup Secret
 
 Install nodejs
+
 `sudo apt install nodejs`
 
 Masuk direktori sinaurails
+
 `cd sinaurails`
 `bundle install`
 `rake secret` # save ouput nilai ini dimasukkan ke file /etc/environment
