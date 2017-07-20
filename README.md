@@ -4,7 +4,9 @@ Ruby version 2.3.3 working under Vagrant
 
 ## Langkah Awal
 
- buat folder depRuby kemudian masuk ke folder == mkdir depRuby && cd depRuby
+ buat folder depRuby kemudian masuk ke folder 
+ 
+ `mkdir depRuby && cd depRuby`
  
  note: nama folder terserah
 
@@ -32,9 +34,9 @@ Reload env
 
 `source /etc/environment`
 
-rvm install ruby-2.3.3
+`rvm install ruby-2.3.3`
 
-gem install bundler --no-rdoc --no-ri
+`gem install bundler --no-rdoc --no-ri`
 
 
 ## Prepare Database
@@ -105,7 +107,9 @@ sudo apt update
 sudo apt install nginx-extras
 ```
 
-Edit default config  == sudo vim /etc/nginx/sites-available/default
+Edit default config 
+
+`sudo vim /etc/nginx/sites-available/default`
 
 Timpa dengan baris berikut:  
 ```
@@ -142,6 +146,7 @@ Restart nginx
 `sudo systemctl restart nginx`
 
 ## Setup Puma
+masuk direktori sinaurails
 ```
 chmod +x script/puma.sh
 ./script/puma.sh start # (start|stop|status|restart)
