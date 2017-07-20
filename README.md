@@ -1,20 +1,61 @@
 # README
+### INDRA PURNOMO
 
 Ruby version 2.3.3 working under Vagrant
 
-## Install vagrant
+## Langkah Awal
+
+ buat folder depRuby kemudian masuk ke folder 
+ 
+ `mkdir depRuby && cd depRuby`
+ 
+ buat vagrantfile dan edit
+ 
+ `vagrant init`
+ 
+ `sudo vim Vagrantfile` #vmbox =ubuntu/xenial64 dan ip private 192.168.33.10 
+ 
+ note: nama folder dan ip private tidak harus sama
+
+## Install vagrant dan masuk ke Vagrant
 
 `vagrant up`
 
+`vagrant ssh`
+
 ## Install Ruby using rvm
 
+
+`curl -sSL https://get.rvm.io | sudo bash -s stable`
+
+## Setup Env 
+
+`sudo vim /etc/environment`
+
+Timpa dengan baris berikut:  
 ```
-curl -sSL https://get.rvm.io | sudo bash -s stable
-rvm install ruby-2.3.3
-gem install bundler --no-rdoc --no-ri
+PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
 ```
 
+Reload env  
+
+`source /etc/environment`
+
+`rvm install ruby-2.3.3`
+
+`gem install bundler --no-rdoc --no-ri`
+
+Change owner sebelum install Ruby
+
+`sudo chown -R ubuntu:ubuntu /usr/local/rvm`
+
 ## Prepare Database
+
+Install postgresql dan  libpq-dev
+
+`sudo apt install postgresql`
+
+`sudo apt install libpq-dev`
 
 Buat user role:  
 `sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"`
@@ -25,15 +66,33 @@ Atur koneksi untuk posgresql:
 Cari bagian `local` (baris 90). ubah peer menjadi md5  
 `local  all all md5`
 
+Restart Postgresql
+
+`sudo service postgresql restart`
+
+Clon repo sinaurail
+
+`git clone git@github.com:indrapurnomo/sinaurails.git`
+
 ## Setup Secret
+
+Install nodejs 
+
+`sudo apt install nodejs`
+
+Masuk direktori sinaurails
+
+`cd sinaurails`
+
+`bundle install`
+
 `rake secret` # save ouput nilai ini dimasukkan ke file /etc/environment
 
 ## Setup Env
 `sudo vim /etc/environment`
 
-Timpa dengan baris berikut:  
+Tambahkan dengan baris berikut:  
 ```
-PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
 export SINAURAILS_DATABASE_PASSWORD="superr4h4s14"
 export RAILS_SERVE_STATIC_FILES="public"
 export SECRET_KEY_BASE="xxxxx"
@@ -44,7 +103,6 @@ Reload env
 
 ## Setup Rails
 ```
-bundle install
 RAILS_ENV=production bundle exec rake db:create db:schema:load
 rails generate scaffold Task title:string note:text
 RAILS_ENV=production bundle exec rake db:migrate
@@ -55,13 +113,16 @@ RAILS_ENV=production bundle exec rake assets:precompile
 ## Setup Nginx
 Install nginx dari lumbung hulu.
 ```
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
-echo "deb http://nginx.org/packages/ubuntu/ xenial nginx" > /etc/apt/sources.list.d/nginx.list
-apt update
-apt install nginx-extras
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
+echo "deb http://nginx.org/packages/ubuntu/ xenial nginx" > /etc/apt/sources.list.d/nginx.list 
+sudo apt update
+sudo apt install nginx-extras
 ```
 
-Edit default config  
+Edit default config 
+
+`sudo vim /etc/nginx/sites-available/default`
+
 Timpa dengan baris berikut:  
 ```
 upstream my_app {
@@ -97,9 +158,11 @@ Restart nginx
 `sudo systemctl restart nginx`
 
 ## Setup Puma
+masuk direktori sinaurails
 ```
 chmod +x script/puma.sh
 ./script/puma.sh start # (start|stop|status|restart)
 ```
 
 ## Setup Script for Deploy
+ `ketik ip address di browser`
