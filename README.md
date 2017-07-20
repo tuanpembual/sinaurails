@@ -5,6 +5,7 @@ Ruby version 2.3.3 working under Vagrant
 ## Langkah Awal
 
  buat folder depRuby kemudian masuk ke folder == mkdir depRuby && cd depRuby
+ 
  note: nama folder terserah
 
 ## Install vagrant dan masuk ke Vagrant
