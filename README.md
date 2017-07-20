@@ -6,16 +6,28 @@ Ruby version 2.3.3 working under Vagrant
 
 `vagrant up`
 
+## Install Nodejs
+
+sudo apt install nodejs
+
 ## Install Ruby using rvm
 
 ```
 curl -sSL https://get.rvm.io | sudo bash -s stable
+setup env >> sudo vim /etc/environment
+PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
+Reload env  
+`source /etc/environment`
 rvm install ruby-2.3.3
 gem install bundler --no-rdoc --no-ri
 ```
 
 ## Prepare Database
 
+install postgrespsql
+sudo apt-get install postgrespsql
+install library postgrespsql
+sudo apt install libpq-dev
 Buat user role:  
 `sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"`
 
@@ -33,7 +45,6 @@ Cari bagian `local` (baris 90). ubah peer menjadi md5
 
 Timpa dengan baris berikut:  
 ```
-PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
 export SINAURAILS_DATABASE_PASSWORD="superr4h4s14"
 export RAILS_SERVE_STATIC_FILES="public"
 export SECRET_KEY_BASE="xxxxx"
@@ -61,7 +72,8 @@ apt update
 apt install nginx-extras
 ```
 
-Edit default config  
+Edit default config 
+/etc/nginx/sites-available
 Timpa dengan baris berikut:  
 ```
 upstream my_app {
