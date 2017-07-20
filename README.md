@@ -51,9 +51,11 @@ Change owner sebelum install Ruby
 
 ## Prepare Database
 
-Install postgresql
+Install postgresql dan  libpq-dev
 
 `sudo apt install postgresql`
+
+`sudo apt install libpq-dev`
 
 Buat user role:  
 `sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"`
@@ -74,16 +76,16 @@ Clon repo sinaurail
 
 ## Setup Secret
 
-Install nodejs dan  libpq-dev
+Install nodejs 
 
 `sudo apt install nodejs`
-
-`sudo apt install libpq-dev`
 
 Masuk direktori sinaurails
 
 `cd sinaurails`
+
 `bundle install`
+
 `rake secret` # save ouput nilai ini dimasukkan ke file /etc/environment
 
 ## Setup Env
