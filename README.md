@@ -38,6 +38,9 @@ Reload env
 
 `gem install bundler --no-rdoc --no-ri`
 
+Change owner sebelum install Ruby
+
+`sudo chown -R ubuntu:ubuntu /usr/local/rvm`
 
 ## Prepare Database
 
