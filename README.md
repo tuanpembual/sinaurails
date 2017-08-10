@@ -61,6 +61,7 @@ Install postgresql dan  libpq-dev
  `sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"`
  
  Atur koneksi untuk posgresql:
+ 
  `sudo vim /etc/postgresql/9.5/main/pg_hba.conf`
  
  Cari bagian `local` (baris 90). ubah peer menjadi md5  
@@ -72,7 +73,7 @@ Restart Postgresql
 
 Clon repo sinaurail
 
-`git clone git@github.com:indrapurnomo/sinaurails.git`
+`git clone https://github.com/indrapurnomo/sinaurails.git`
 
 ## Setup Secret
 
