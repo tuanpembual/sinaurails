@@ -20,10 +20,11 @@ Buat user role:
 `sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"`
 
 Atur koneksi untuk posgresql:  
-`sudo vim /etc/postgresql/9.5/main/pg_hba.conf`
+`sudo vim /etc/postgresql/9.6/main/pg_hba.conf`
 
 Cari bagian `local` (baris 90). ubah peer menjadi md5  
-`local  all all md5`
+`local  all all md5`  
+Kemudian restart service postgresql
 
 ## Setup Secret
 `rake secret` # save ouput nilai ini dimasukkan ke file /etc/environment
@@ -45,9 +46,7 @@ Reload env
 ## Setup Rails
 ```
 bundle install
-RAILS_ENV=production bundle exec rake db:create db:schema:load
-rails generate scaffold Task title:string note:text
-RAILS_ENV=production bundle exec rake db:migrate
+RAILS_ENV=production bundle exec rake db:create db:migrate
 RAILS_ENV=production bundle exec rake db:seed
 RAILS_ENV=production bundle exec rake assets:precompile
 ```
