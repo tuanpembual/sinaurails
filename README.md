@@ -32,9 +32,9 @@ Kemudian restart service postgresql
 ## Setup Env
 `sudo vim /etc/environment`
 
-Timpa dengan baris berikut:  
+Tambahkan dengan baris berikut:  
 ```
-PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
+#PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
 export SINAURAILS_DATABASE_PASSWORD="superr4h4s14"
 export RAILS_SERVE_STATIC_FILES="public"
 export SECRET_KEY_BASE="xxxxx"
@@ -57,10 +57,10 @@ Install nginx dari lumbung hulu.
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
 echo "deb http://nginx.org/packages/ubuntu/ xenial nginx" > /etc/apt/sources.list.d/nginx.list
 apt update
-apt install nginx-extras
+apt install nginx
 ```
 
-Edit default config  
+Edit default file di path /etc/nginx/sites-available/  
 Timpa dengan baris berikut:  
 ```
 upstream my_app {
