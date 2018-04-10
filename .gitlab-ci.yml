@@ -1,0 +1,42 @@
+# This file is a template, and might need editing before it works on your project.
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/ruby/tags/
+image: "ruby:2.4"
+
+# Pick zero or more services to be used on all builds.
+# Only needed when using a docker container to run your tests in.
+# Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: database_name
+
+# Cache gems in between builds
+cache:
+  paths:
+    - vendor/ruby
+
+stages:
+  - build
+  - deploy
+
+ini compile:
+  variables:
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  stage: build
+  script: 
+  - apt-get update && apt install -y -qq nodejs
+  - gem install bundler  --no-ri --no-rdoc
+  - gem install execjs
+  - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - bundle exec rake db:migrate
+  - bundle exec rake db:seed
+  - bundle exec rake assets:precompile
+
+ini deploy:
+  stage: deploy
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_PRODUCTION_KEY
+
