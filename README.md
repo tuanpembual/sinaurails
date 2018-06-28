@@ -1,6 +1,6 @@
 # README
 
-Ruby version 2.3.3 working under Vagrant
+Ruby version 2.5.0 working under Vagrant
 
 ## Install vagrant
 
@@ -10,7 +10,7 @@ Ruby version 2.3.3 working under Vagrant
 
 ```
 curl -sSL https://get.rvm.io | sudo bash -s stable
-rvm install ruby-2.3.3
+rvm install ruby-2.5.0
 gem install bundler --no-rdoc --no-ri
 ```
 
@@ -34,7 +34,7 @@ Kemudian restart service postgresql
 
 Tambahkan dengan baris berikut:  
 ```
-#PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.3.3/bin:/usr/local/rvm/gems/ruby-2.3.3@global/bin:/usr/local/rvm/rubies/ruby-2.3.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
+#PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.5.0/bin:/usr/local/rvm/gems/ruby-2.5.0@global/bin:/usr/local/rvm/rubies/ruby-2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
 export SINAURAILS_DATABASE_PASSWORD="superr4h4s14"
 export RAILS_SERVE_STATIC_FILES="public"
 export SECRET_KEY_BASE="xxxxx"
